@@ -49,10 +49,4 @@ function displayBooks() {
     }
 }
 
-
-// create some books for debugging
-addBookToLibrary('Bossypants', 'Tina Fey', 275, false);
-addBookToLibrary("Are You There, Vodka? It's Me, Chelsea", 'Chelsea Handler', 256, false);
-addBookToLibrary('Calypso', 'David Sedaris', 272, true);
-
 displayBooks();

@@ -4,9 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="books_container"></div>
+    <button command="show-modal" commandfor="form-dialog">Add Book</button>
+    <dialog id="form-dialog">
+        <form>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title">
+            
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author">
+
+            <label for="pages">Pages</label>
+            <input type="number" name="pages" id="pages">
+
+            <label for="read">Read</label>
+            <input type="checkbox" name="read" id="read">
+        </form>
+        <button formmethod="dialog">Add</button>
+        <button command="close">Close</button>
+    </dialog>
+
+    <div class="books_container">
+        <!-- All new cards get added here -->
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
