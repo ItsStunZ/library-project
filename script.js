@@ -1,5 +1,8 @@
-const bookLibrary = []; // All books are stored here
+// Elements
+const addBookBtn = document.querySelector('#addbook-btn');
+const formDialog = document.querySelector('#form-dialog');
 
+const bookLibrary = []; // All books are stored here
 
 function Book(title, author, pages, read) {
     if (!new.target) {
@@ -13,40 +16,62 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary(title, author, pages, read) {
+    if (!title || !author || !pages) {
+        alert('(!) Please make sure you input a title, author and the number of pages');
+        return;
+    }
     const newBook = new Book(title, author, pages, read);
     bookLibrary[crypto.randomUUID()] = newBook;
+
+    return newBook;
 }
 
-function displayBooks() {
-    const booksContainer = document.querySelector('.books_container');
+function createCard(book) {
+    const booksContainer = document.querySelector('.books-container');
     // loop through bookLibrary and display on page
-    for (let id in bookLibrary) {
-        // Create new card
-        const card = document.createElement('div');
-        card.classList.add('.card');
-        
-        // Create title header
-        const titleHeader = document.createElement('h1');
-        titleHeader.textContent = bookLibrary[id]._title;
-        card.appendChild(titleHeader);
+    
+    // Create new card
+    const card = document.createElement('div');
+    card.classList.add('card');
+    
+    // Create title header
+    const titleHeader = document.createElement('h1');
+    titleHeader.textContent = book._title;
+    card.appendChild(titleHeader);
 
-        // Create author header
-        const authorHeader = document.createElement('h2');
-        authorHeader.textContent = bookLibrary[id]._author;
-        card.appendChild(authorHeader);
+    // Create author header
+    const authorHeader = document.createElement('h2');
+    authorHeader.textContent = book._author;
+    card.appendChild(authorHeader);
 
-        // Create #pages paragraph
-        const pages = document.createElement('p');
-        pages.textContent = bookLibrary[id]._pages;
-        card.appendChild(pages);
+    // Create #pages paragraph
+    const pages = document.createElement('p');
+    pages.textContent = `${book._pages} pages`;
+    card.appendChild(pages);
 
-        // Create has read paragraph
-        const hasRead = document.createElement('p');
-        hasRead.textContent = bookLibrary[id]._read ? 'Already read' : 'Not yet read';
-        card.appendChild(hasRead);
+    // Create has read paragraph
+    const hasRead = document.createElement('p');
+    hasRead.textContent = book._read ? 'Already read' : 'Not yet read';
+    card.appendChild(hasRead);
 
-        booksContainer.appendChild(card);
-    }
+    booksContainer.appendChild(card);
 }
 
-displayBooks();
+addBookBtn.addEventListener('click', (e) => {
+    // prevent defaults
+    e.preventDefault();
+    // close dialog
+    formDialog.close();
+
+    // get inputs
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const pages = document.querySelector('#pages').value;
+    const read = document.querySelector('#read').checked;
+
+    console.log(read);
+
+    // create new book
+    const newBook = addBookToLibrary(title, author, pages, read);
+    createCard(newBook);
+})
