@@ -21,12 +21,16 @@
 
             <label for="pages">Pages</label>
             <input type="number" name="pages" id="pages">
-
-            <label for="read">Read</label>
-            <input type="checkbox" name="read" id="read">
+        
+            <div class="row">
+                <label for="read">Read</label>
+                <input type="checkbox" name="read" id="read">
+            </div>
         </form>
-        <button id="addbook-btn">Add</button>
-        <button command="close" commandfor="form-dialog">Close</button>
+        <div class="column">
+            <button id="addbook-btn">Add</button>
+            <button command="close" commandfor="form-dialog">Close</button>
+        </div>
     </dialog>
 
     <div class="books-container">
