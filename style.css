@@ -3,12 +3,38 @@
     margin: 0;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+header {
+    text-align: center;
+    padding: 30px;
+}
+
+dialog {
+    align-self: center;
+    justify-self: center;
+    padding: 15px;
+}
+
 dialog::backdrop {
     background-color: rgba(0, 0, 0, 0.507);
 }
 
+#show-modal {
+    width: 90px;
+    padding: 10px;
+    align-self: center;
+}
+
 .books-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .card {
