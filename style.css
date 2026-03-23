@@ -51,6 +51,11 @@ dialog::backdrop {
 #form-dialog form {
     display: flex;
     flex-direction: column;
+    text-align: center;
+}
+
+#form-dialog h1 {
+    text-align: center;
 }
 
 

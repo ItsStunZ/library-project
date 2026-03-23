@@ -18,9 +18,13 @@ function Book(id, title, author, pages, read) {
 
 Book.prototype.delete = function() {
     // remove from array
-    const index = bookLibrary.findIndex((book) => book._id === this._id);
+
+    const index = bookLibrary.findIndex((book) => book._id == this._id);
     console.log(index);
-    delete bookLibrary[index];
+    
+    if (index !== -1) {
+        bookLibrary.splice(index, 1);
+    }
 }
 
 function addBookToLibrary(title, author, pages, read) {
