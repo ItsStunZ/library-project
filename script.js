@@ -27,6 +27,11 @@ Book.prototype.delete = function() {
     }
 }
 
+Book.prototype.toggleReadStatus = function() {
+    // update button text to new read value
+    this._read = !this._read;
+}
+
 function addBookToLibrary(title, author, pages, read) {
     if (!title || !author || !pages) {
         alert('(!) Please make sure you input a title, author and the number of pages');
@@ -60,12 +65,17 @@ function createCard(book) {
     const pages = document.createElement('p');
     pages.textContent = `${book._pages} pages`;
     card.appendChild(pages);
+    
+    // Create toggle read status button also replaces read <p> above
+    const toggleStatusBtn = document.createElement('button');
+    toggleStatusBtn.textContent = book._read ? 'Already read' : 'Not yet read';
+    toggleStatusBtn.addEventListener('click', function() {
+        book.toggleReadStatus();
+        toggleStatusBtn.textContent = book._read ? 'Already read' : 'Not yet read';
+    })
+    card.appendChild(toggleStatusBtn);
 
-    // Create has read paragraph
-    const hasRead = document.createElement('p');
-    hasRead.textContent = book._read ? 'Already read' : 'Not yet read';
-    card.appendChild(hasRead);
-
+    // Create remove button
     const removeBookBtn = document.createElement('button');
     removeBookBtn.textContent = 'Remove';
     removeBookBtn.addEventListener('click', function() {
