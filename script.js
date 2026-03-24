@@ -4,6 +4,7 @@ const formDialog = document.querySelector('#form-dialog');
 
 const bookLibrary = []; // All books are stored here
 
+// Constructor
 function Book(id, title, author, pages, read) {
     if (!new.target) {
         throw Error("You must have the 'new' operator before calling Book");
@@ -16,6 +17,7 @@ function Book(id, title, author, pages, read) {
     this._read = read;
 }
 
+// Prototypes
 Book.prototype.delete = function() {
     // remove from array
 
@@ -32,6 +34,7 @@ Book.prototype.toggleReadStatus = function() {
     this._read = !this._read;
 }
 
+// Functions
 function addBookToLibrary(title, author, pages, read) {
     if (!title || !author || !pages) {
         alert('(!) Please make sure you input a title, author and the number of pages');
@@ -65,7 +68,7 @@ function createCard(book) {
     const pages = document.createElement('p');
     pages.textContent = `${book._pages} pages`;
     card.appendChild(pages);
-    
+
     // Create toggle read status button also replaces read <p> above
     const toggleStatusBtn = document.createElement('button');
     toggleStatusBtn.textContent = book._read ? 'Already read' : 'Not yet read';
@@ -89,6 +92,7 @@ function createCard(book) {
     booksContainer.appendChild(card);
 }
 
+// Events Listeners
 addBookBtn.addEventListener('click', (e) => {
     // prevent defaults
     e.preventDefault();
